@@ -13,4 +13,10 @@ Pod::Spec.new do |s|
   s.tvos.vendored_frameworks = "tvOS/TwitterCore.framework"
   s.ios.frameworks = "Accounts", "CoreData", "CoreGraphics", "Foundation", "Security", "Social", "UIKit"
   s.tvos.frameworks = "CoreData", "CoreGraphics", "Foundation", "Security", "UIKit"
+  s.preserve_paths = "iOS/TwitterCore.framework/*"
+  s.xcconfig = {
+    'FRAMEWORK_SEARCH_PATH[sdk=iphoneos*]' => '$(inherited) "$(PODS_ROOT)/TwitterCore/iOS"',
+    'OTHERCFLAGS[sdk=iphoneos*]' => '$(inherited) -iframework "$(PODS_ROOT)/TwitterCore/iOS"',
+    'OTHER_LDFLAGS[sdk=iphoneos*]' => '$(inherited) -framework TwitterCore'
+}
 end
